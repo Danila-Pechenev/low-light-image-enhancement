@@ -1,6 +1,7 @@
 from PIL import Image
 from tensorflow import keras
 import io
+import os
 from ..app import model
 
 model_instance: keras.Model = model.create_model()
@@ -21,7 +22,7 @@ def test_image_jpg():
     width: int
     height: int
     output_image: Image.Image
-    width, height, output_image = template("test_images/test1.jpg")
+    width, height, output_image = template(os.path.join(os.getcwd(), "test_images/test1.jpg"))
 
     assert width == output_image.size[0]
     assert height == output_image.size[1]
@@ -31,7 +32,7 @@ def test_image_png():
     width: int
     height: int
     output_image: Image.Image
-    width, height, output_image = template("test_images/test2.png")
+    width, height, output_image = template(os.path.join(os.getcwd(), "test_images/test2.png"))
 
     assert width == output_image.size[0]
     assert height == output_image.size[1]
@@ -41,7 +42,7 @@ def test_image_jpeg():
     width: int
     height: int
     output_image: Image.Image
-    width, height, output_image = template("test_images/test3.jpeg")
+    width, height, output_image = template(os.path.join(os.getcwd(), "test_images/test3.jpeg"))
 
     assert width == output_image.size[0]
     assert height == output_image.size[1]
