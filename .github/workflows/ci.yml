@@ -27,6 +27,7 @@ jobs:
         run: |
           pip install mypy
           pip install -r app/requirements.txt
+          python3 -m pip install types-Pillow
       - name: Run mypy
         run: mypy .
   test:
