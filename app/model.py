@@ -28,5 +28,6 @@ def run_model(image_bytes: io.BytesIO, model: keras.Model) -> Image.Image:
     output_image_array: np.ndarray = output_image_array.astype(np.uint8)
     output_image: Image.Image = Image.fromarray(output_image_array)
     output_image: Image.Image = output_image.resize((width, height))
-    output_image.save("user_data/output.jpg")
+    # Uncomment if necessary:
+    # output_image.save("user_data/output.jpg")
     return output_image
