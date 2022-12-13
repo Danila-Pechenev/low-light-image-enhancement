@@ -11,7 +11,7 @@ jobs:
       - name: Run linter
         uses: psf/black@stable
         with:
-          options: "--check —verbose -l 120"
+          options: "--check --verbose -l 120"
           src: "./app"
           version: "~= 22.0"
   mypy:
@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: 3.10
+          python-version: '3.10'
       - name: Install dependencies
         run: pip install mypy
       - name: Run mypy
@@ -36,7 +36,7 @@ jobs:
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: 3.10
+          python-version: '3.10'
       - name: Install dependencies
         run: |
           pip install pytest
