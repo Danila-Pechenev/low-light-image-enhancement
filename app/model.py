@@ -1,3 +1,4 @@
+from huggingface_hub import from_pretrained_keras
 from tensorflow import keras
 from PIL import Image
 import numpy as np
@@ -5,7 +6,7 @@ import io
 
 
 def create_model() -> keras.Model:
-    return keras.models.load_model("model")
+    return from_pretrained_keras("keras-io/lowlight-enhance-mirnet")
 
 
 def run_model(image: io.BytesIO, model: keras.Model) -> Image.Image:
