@@ -24,8 +24,7 @@ def run_model(image_bytes: io.BytesIO, model: keras.Model) -> Image.Image:
     output_image_array3: np.ndarray = output_image_array2.reshape(
         (np.shape(output_image_array2)[0], np.shape(output_image_array2)[1], 3)
     )
-    output_image_array4: np.ndarray = np.uint32(output_image_array3)
-    output_image_array5: np.ndarray = output_image_array4.astype(np.uint8)
+    output_image_array5: np.ndarray = output_image_array3.astype(np.uint8)
     output_image1: Image.Image = Image.fromarray(output_image_array5)
     output_image2: Image.Image = output_image1.resize((width, height))
     # Uncomment if necessary:
