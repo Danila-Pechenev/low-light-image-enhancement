@@ -24,9 +24,7 @@ def process_image():
     )
     if uploaded_file:
         placeholder: st.delta_generator.DeltaGenerator = st.empty()
-        placeholder.info(
-            "The image is being processed. It may take some time. Wait, please..."
-        )
+        placeholder.info("The image is being processed. It may take some time. Wait, please...")
         image: Image.Image = model.run_model(uploaded_file, st.session_state["model"])
         placeholder.empty()
         placeholder.image(image)
