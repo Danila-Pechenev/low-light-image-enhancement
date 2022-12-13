@@ -1,10 +1,7 @@
 from PIL import Image
 from tensorflow import keras
-import sys
 import io
-
-sys.path.append("./../app")
-import model
+from ..app import model
 
 model_instance: keras.Model = model.create_model()
 
