@@ -10,12 +10,12 @@ def create_model() -> keras.Model:
 
 
 def run_model(image_bytes: io.BytesIO, model: keras.Model) -> Image.Image:
-    image: Image.Image = Image.open(image_bytes)
+    image1: Image.Image = Image.open(image_bytes)
     width: int
     height: int
-    width, height = image.size
-    image: Image.Image = image.resize((960, 640))
-    image_array1: np.ndarray = keras.utils.img_to_array(image)
+    width, height = image1.size
+    image2: Image.Image = image1.resize((960, 640))
+    image_array1: np.ndarray = keras.utils.img_to_array(image2)
     image_array2: np.ndarray = image_array1.astype("float32") / 255.0
     image_array3: np.ndarray = np.expand_dims(image_array2, axis=0)
     output: np.ndarray = model.predict(image_array3)
