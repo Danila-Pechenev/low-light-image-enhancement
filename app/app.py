@@ -33,8 +33,11 @@ def process_image():
         image = call_model(uploaded_file)
         placeholder.empty()
         placeholder.image(image)
-        with open("user_data/output.jpg", "rb") as file:
-            st.download_button(label="Download lightened image", data=file, file_name="lightened.jpg", mime="image/jpg")
+        image_bytes = io.BytesIO()
+        image.save(image_bytes, format="png")
+        st.download_button(
+            label="Download lightened image", data=image_bytes, file_name="lightened.png", mime="image/png"
+        )
 
 
 def main():
