@@ -18,19 +18,19 @@ def describe_service():
 
 
 @st.experimental_memo
-def call_model(uploaded_file):
+def call_model(uploaded_file: io.BytesIO) -> Image.Image:
     return model.run_model(uploaded_file, st.session_state["model"])
 
 
 def process_image():
-    uploaded_file: io.BytesIO = st.file_uploader(
+    uploaded_file = st.file_uploader(
         label="Choose a file (you can upload new files without refreshing the page)",
         type=["png", "jpg", "jpeg"],
     )
     if uploaded_file:
-        placeholder: st.delta_generator.DeltaGenerator = st.empty()
+        placeholder = st.empty()
         placeholder.info("The image is being processed. It may take some time. Wait, please...")
-        image: Image.Image = call_model(uploaded_file)
+        image = call_model(uploaded_file)
         placeholder.empty()
         placeholder.image(image)
         with open("user_data/output.jpg", "rb") as file:
