@@ -3,7 +3,7 @@ name: Sync to Hugging Face hub
 
 on:
   push:
-    branches: [app]
+    branches: [main]
 
 
 jobs:
@@ -16,4 +16,4 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://dpechenev:$HF_TOKEN@huggingface.co/spaces/dpechenev/low_light_image_enhancement app
+        run: git push --force https://dpechenev:$HF_TOKEN@huggingface.co/spaces/dpechenev/low_light_image_enhancement main
