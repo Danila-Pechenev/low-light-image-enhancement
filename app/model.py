@@ -3,6 +3,7 @@ from tensorflow import keras
 from PIL import Image
 import numpy as np
 import io
+import os
 
 
 def create_model() -> keras.Model:
@@ -27,6 +28,7 @@ def run_model(image_bytes: io.BytesIO, model: keras.Model) -> Image.Image:
     output_image_array5: np.ndarray = output_image_array3.astype(np.uint8)
     output_image1: Image.Image = Image.fromarray(output_image_array5)
     output_image2: Image.Image = output_image1.resize((width, height))
-    # Uncomment if necessary:
-    # output_image.save("user_data/output.jpg")
+    if not os.path.exists("user_data"):
+        os.makedirs("user_data")
+    output_image2.save("user_data/output.jpg")
     return output_image2

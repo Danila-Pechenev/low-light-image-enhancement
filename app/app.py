@@ -17,6 +17,11 @@ def describe_service():
     st.subheader("Just upload your low-light image and get the processed one!")
 
 
+@st.experimental_memo
+def call_model(uploaded_file):
+    return model.run_model(uploaded_file, st.session_state["model"])
+
+
 def process_image():
     uploaded_file: io.BytesIO = st.file_uploader(
         label="Choose a file (you can upload new files without refreshing the page)",
@@ -25,9 +30,11 @@ def process_image():
     if uploaded_file:
         placeholder: st.delta_generator.DeltaGenerator = st.empty()
         placeholder.info("The image is being processed. It may take some time. Wait, please...")
-        image: Image.Image = model.run_model(uploaded_file, st.session_state["model"])
+        image: Image.Image = call_model(uploaded_file)
         placeholder.empty()
         placeholder.image(image)
+        with open("user_data/output.jpg", "rb") as file:
+            st.download_button(label="Download lightened image", data=file, file_name="lightened.jpg", mime="image/jpg")
 
 
 def main():
